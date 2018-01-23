@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
       socket.emit('player2', { name: data.name, gameId: data.gameId });
     } else if (!game) {
       socket.emit('err', { message: 'Такой игры не существует!' });
-    } else if (game.length > 1) {
+    } else if (game.length >= 2) {
       socket.emit('err', { message: 'В этой игре больше нет места!' });
     }
   });

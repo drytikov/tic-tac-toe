@@ -1,5 +1,5 @@
 import React from 'react';
-import io from   'socket.io-client';
+import io from 'socket.io-client';
 import Player from './Player';
 import Game from './Game';
 import { uniqueId } from 'lodash';
@@ -23,7 +23,7 @@ export default class extends React.Component {
       isCompletedGame: false,
       player: '',
       game: '',
-      // все возможные выигрышные комбинации
+      // Все возможные выигрышные комбинации
       winOptions: [
         [0, 1, 2],
         [3, 4, 5],
@@ -34,7 +34,7 @@ export default class extends React.Component {
         [0, 4, 8],
         [2, 4, 6],
       ],
-      // выиграшная комбинация
+      // Выиграшная комбинация
       winFields: [],
       chatMessages: [],
       // Игровое поле
@@ -92,7 +92,7 @@ export default class extends React.Component {
     // Обработчик, который вызывается после сделанного хода
     this.socket.on('movePlayed', (data) => {
       const { game, player } = this.state;
-      // Увеличиваем количество сделаннх ходов текущим игроком
+      // Увеличиваем количество сделанных ходов текущим игроком
       game.incMoves();
       player.setCurrentMove(true);
       // В состоянии обновляем значения игрового поля
@@ -121,7 +121,7 @@ export default class extends React.Component {
     });
   }
 
-  // обработчик на кнопку "отправить"
+  // Обработчик на кнопку "отправить"
   onClickSendMessage = (e) => {
     e.preventDefault();
     const { player, game, chatMessage } = this.state;
