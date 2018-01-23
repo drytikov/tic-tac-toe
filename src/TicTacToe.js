@@ -7,7 +7,7 @@ import update from 'immutability-helper';
 import checkWinner from './checkWinner';
 import beep from './audio/beep.mp3'
 
-class Creation extends React.Component {
+export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -332,5 +332,3 @@ class Creation extends React.Component {
     );
   }
 }
-
-export default Creation;
