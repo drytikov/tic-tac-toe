@@ -16,7 +16,7 @@ io.on('connection', (socket) => {
   // Создаем новую игру и уведомляем создателя игры
   socket.on('createGame', (data) => {
     socket.join(`game-${games += 1}`);
-    socket.emit('newGame', { name: data.name, gameId: `game-${games}` });
+    socket.emit('newGame', { gameId: `game-${games}` });
   });
 
   // Подключаем второго игрока к игре, которую он запросил.
@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
     if (game && game.length === 1) {
       socket.join(data.gameId);
       socket.broadcast.to(data.gameId).emit('player1', { gameId: data.gameId });
-      socket.emit('player2', { name: data.name, gameId: data.gameId });
+      socket.emit('player2', { gameId: data.gameId });
     } else if (!game) {
       socket.emit('err', { message: 'Такой игры не существует!' });
     } else if (game.length >= 2) {

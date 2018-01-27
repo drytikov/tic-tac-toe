@@ -55,29 +55,29 @@ export default class extends React.Component {
 
     this.socket.on('newGame', (data) => {
       const welcomeMessage =
-        `Привет, ${data.name}. Попроси своего друга ввести номер игры:
+        `Привет, ${this.state.player.getPlayerName()}. Попроси своего друга ввести номер игры:
         ${data.gameId}. Ждем второго игрока...`;
-      // Создаем Game для первого игрока
-      const game = new Game(data.gameId);
       // Скрываем стартовое окно, в состояние передаем приветственное сообщение и Game
-      this.setState({ displayWelcomeWindow: false, welcomeMessage, game });
+      this.setState({ displayWelcomeWindow: false, welcomeMessage });
     });
 
     // Приветствуем первого игрока и укомплектованность игры ставим в true.
     // Устанавливаем первый ход за первым игроком
     this.socket.on('player1', (data) => {
       const welcomeMessage = `Привет, ${this.state.player.getPlayerName()}`;
+      // Создаем Game для первого игрока
+      const game = new Game(data.gameId);
       this.setState({
         welcomeMessage,
         isCompletedGame: true,
-        form: { gameId: data.gameId },
+        game,
       });
       this.state.player.setCurrentMove(true);
     });
 
 
     this.socket.on('player2', (data) => {
-      const welcomeMessage = `Привет, ${data.name}`;
+      const welcomeMessage = `Привет, ${this.state.player.getPlayerName()}`;
       // Создаем Game для второго игрока
       const game = new Game(data.gameId);
       this.state.player.setCurrentMove(false);
