@@ -14,3 +14,5 @@
   <li>socket.io for communication between the client and the server</li>
   <li>React JS for UI</li>
 </ul>
+<h2>You can try it on:</h2>
+<p>https://tic-tac-toe-rytikov.herokuapp.com</p>
